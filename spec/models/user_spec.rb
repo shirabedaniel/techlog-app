@@ -6,7 +6,7 @@ describe User do
   let(:password) { '123456' }
   let(:user) { User.new(nickname: nickname, email: email, password: password, password_confirmation: password) }
 
-  describe '.first' do 
+  describe '.first' do
     before do
       create(:user, nickname: nickname, email: email)
     end
