@@ -10,7 +10,7 @@ describe 'User', type: :system do
 
   describe 'ユーザー登録機能の検証' do
     before { visit '/users/sign_up' }
-    
+
     subject do
       fill_in 'user_nickname', with: nickname
       fill_in 'user_email', with: email
@@ -36,7 +36,7 @@ describe 'User', type: :system do
       end
 
       context 'nicknameが20文字を超える場合' do
-        let(:nickname) { 'あ' * 21 } 
+        let(:nickname) { 'あ' * 21 }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
           expect(page).to have_content('Nickname is too long (maximum is 20 characters)')
