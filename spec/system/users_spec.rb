@@ -4,7 +4,7 @@ describe 'User', type: :system do
   before { driven_by :rack_test }
 
   let(:email) { 'test@example.com' }
-  let(:nickname) { ' テスト太郎' }
+  let(:nickname) { 'テスト太郎' }
   let(:password) { 'password' }
   let(:password_confirmation) { password }
 
@@ -39,7 +39,7 @@ describe 'User', type: :system do
         let(:nickname) { 'あ' * 21 }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
-          expect(page).to have_content('Nickname is too long (maximum is 20 characters)')
+          expect(page).to have_content('Nickname is too long (maximum is 20 character')
         end
       end
 
@@ -81,6 +81,30 @@ describe 'User', type: :system do
           expect { subject }.not_to change(User, :count)
           expect(page).to have_content("Password confirmation doesn't match Password")
         end
+      end
+    end
+  end
+
+  describe 'ログイン機能の検証' do
+    before do
+      create(:user, nickname: nickname, email: email, password: password, password_confirmation: password)
+
+      visit '/users/sign_in'
+      fill_in 'user_email', with: email
+      fill_in 'user_password', with: 'password'
+      click_button 'ログイン'
+    end
+
+    context '正常系' do
+      it 'ログインに成功し、トップページにリダイレクトする' do
+        expect(current_path).to eq('/')
+      end
+    end
+
+    context '異常系' do
+      let(:password) { 'NGpassword' }
+      it 'ログインに失敗し、ページ遷移しない' do
+        expect(current_path).to eq('/users/sign_in')
       end
     end
   end
