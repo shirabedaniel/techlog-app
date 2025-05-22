@@ -31,7 +31,7 @@ describe 'User', type: :system do
         let(:nickname) { '' }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
-          expect(page).to have_content("ニックネーム が入力されていません。")
+          expect(page).to have_content('ニックネーム が入力されていません。')
         end
       end
 
@@ -47,7 +47,7 @@ describe 'User', type: :system do
         let(:email) { '' }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
-          expect(page).to have_content("メールアドレス が入力されていません。")
+          expect(page).to have_content('メールアドレス が入力されていません。')
         end
       end
 
@@ -55,7 +55,7 @@ describe 'User', type: :system do
         let(:password) { '' }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
-          expect(page).to have_content("パスワード が入力されていません。")
+          expect(page).to have_content('パスワード が入力されていません。')
         end
       end
 
@@ -79,7 +79,7 @@ describe 'User', type: :system do
         let(:password_confirmation) { "#{password}hoge" }
         it 'ユーザーを作成せず, エラーメッセージを表示する' do
           expect { subject }.not_to change(User, :count)
-          expect(page).to have_content("確認用パスワード が一致していません。")
+          expect(page).to have_content('確認用パスワード が一致していません。')
         end
       end
     end

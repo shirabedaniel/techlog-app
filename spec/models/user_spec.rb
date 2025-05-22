@@ -46,7 +46,7 @@ describe User do
 
           it 'User オブジェクトは有効である' do
             expect(user.valid?).to be(false)
-            expect(user.errors[:nickname]).to include("が入力されていません。")
+            expect(user.errors[:nickname]).to include('が入力されていません。')
           end
         end
       end
