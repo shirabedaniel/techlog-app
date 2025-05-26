@@ -66,4 +66,28 @@ RSpec.describe "Posts", type: :system do
       expect(page).to have_content(@user.nickname)
     end
   end
+
+  describe 'ログ一覧機能の検証' do
+    before do
+      @post2 = create(:post, title: 'RSpec学習完了 2', content: 'System Specを作成した 2', user_id: @user.id)
+      visit '/posts'
+    end
+
+    it '1件目のPostの詳細が表示される' do
+      expect(page).to have_content('RSpec学習完了')
+      expect(page).to have_content('System Specを作成した')
+      expect(page).to have_content(@user.nickname)
+    end
+
+    it '2件目のPostの詳細が表示される' do
+      expect(page).to have_content('RSpec学習完了 2')
+      expect(page).to have_content('System Specを作成した 2')
+      expect(page).to have_content(@user.nickname)
+    end
+
+    it '投稿タイトルをクリックすると詳細ページへ遷移する' do
+      click_link 'RSpec学習完了'
+      expect(current_path).to eq("/posts/#{@post.id}")
+    end
+  end
 end
