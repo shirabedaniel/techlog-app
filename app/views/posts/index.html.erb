@@ -8,7 +8,7 @@
           <div class="flex items-start justify-between w-full">
             <div class="pl-3">
               <p class="focus:outline-none text-lg font-medium leading-5 text-gray-800"><%= link_to post.title, post_path(post) %></p>
-              <p class="focus:outline-none text-sm leading-normal pt-2 text-gray-500">by <%= post.user.nickname%></p>
+              <p class="focus:outline-none text-sm leading-normal pt-2 text-gray-500">by <%= link_to post.user.nickname, user_path(post.user), class: "hover:text-indigo-600 hover:font-bold" %></p>
             </div>
           </div>
         </div>
