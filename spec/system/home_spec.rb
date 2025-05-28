@@ -6,10 +6,10 @@ RSpec.describe 'Homes', type: :system do
   end
 
   describe 'トップページの検証' do
-    it 'Home#topという文字例を表示される' do
+    it 'TechLogという文字例を表示される' do
       visit '/'
 
-      expect(page).to have_content('Home#top')
+      expect(page).to have_content('TechLog')
     end
   end
 
